@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { BlogPostService } from '../../services/blogPost.service';
 import { User } from '../../models/user.model';
+import { BlogPost } from '../../models/blogPost.model';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -9,18 +11,20 @@ import { User } from '../../models/user.model';
 })
 export class DashboardComponent implements OnInit {
 
-  title = 'Dashboard';
+  title = 'BlogPosts';
   users: User[];
+  blogPosts: BlogPost[];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
+    private blogPostService: BlogPostService
+    // private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUsers()
-      .then(users => this.users = users)
+    this.blogPostService.getBlogPosts()
+      .then(blogPosts => this.blogPosts = blogPosts)
       .catch(error => console.log(error));
   }
 

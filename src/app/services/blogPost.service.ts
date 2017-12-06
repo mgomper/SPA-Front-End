@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
-import { User } from '../models/user.model';
+import { BlogPost } from '../models/blogPost.model';
 
 @Injectable()
-export class UserService {
+export class BlogPostService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/users'; // URL to web api
-  private users: User[] = [];
+  private serverUrl = environment.serverUrl + '/blogPosts'; // URL to web api
+  private blogPosts: BlogPost[] = [];
 
   //
   //
@@ -19,13 +19,13 @@ export class UserService {
   //
   //
   //
-  public getUsers(): Promise<User[]> {
+  public getBlogPosts(): Promise<BlogPost[]> {
     console.log('items ophalen van server');
     return this.http.get(this.serverUrl, { headers: this.headers })
       .toPromise()
       .then(response => {
         console.dir(response.json());
-        return response.json() as User[];
+        return response.json() as BlogPost[];
       })
       .catch(error => {
         return this.handleError(error);

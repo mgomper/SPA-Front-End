@@ -9,6 +9,7 @@ import { HttpModule, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import {BlogPostService} from './services/blogPost.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HeaderComponent } from './components/header/header.component';
     BrowserAnimationsModule
   ],
   providers: [
-    UserService
+    UserService,
+    BlogPostService
   ],
   bootstrap: [AppComponent]
 })
