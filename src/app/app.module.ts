@@ -1,33 +1,59 @@
-import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HttpModule, Http } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './components/header/header.component';
-import {BlogPostService} from './services/blogPost.service';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeService } from './recipes/recipe.service';
+import { PostsComponent } from './posts/posts.component';
+import { PostDetailComponent } from './posts/post-detail/post-detail.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostStartComponent } from './posts/post-start/post-start.component';
+import { PostItemComponent } from './posts/post-list/post-item/post-item.component';
+import {PostService} from './posts/post.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     HeaderComponent,
+    RecipesComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeItemComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent,
+    DropdownDirective,
+    RecipeStartComponent,
+    RecipeEditComponent,
+    PostsComponent,
+    PostDetailComponent,
+    PostEditComponent,
+    PostListComponent,
+    PostStartComponent,
+    PostItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    AppRoutingModule
   ],
-  providers: [
-    UserService,
-    BlogPostService
-  ],
+  providers: [ShoppingListService, RecipeService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
