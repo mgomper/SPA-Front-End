@@ -11,7 +11,7 @@ import {Comment} from '../../shared/comment.model';
   styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent implements OnInit {
-  post: Post = new Post({});
+  post: Post = new Post();
   id: string;
 
   constructor(private postService: PostService,
@@ -25,11 +25,14 @@ export class PostDetailComponent implements OnInit {
         (params: Params) => {
           this.id = params['id'];
           this.postService.getPost(this.id).then(res => {
+            console.log('res incoming: ' + res);
+            console.log('res content: ' + res.content);
             this.post = res;
           });
         }
       );
   }
+
 
   // onAddToShoppingList() {
   //   this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);

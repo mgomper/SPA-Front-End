@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import { Post } from '../../post.model';
 
@@ -10,8 +10,13 @@ import { Post } from '../../post.model';
 export class PostItemComponent implements OnInit {
   @Input() post: Post;
   @Input() index: string;
+  @Output() postSelected = new EventEmitter<void>();
 
   ngOnInit() {
     this.index = this.post._id;
+  }
+
+  onSelected() {
+    this.postSelected.emit();
   }
 }

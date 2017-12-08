@@ -30,18 +30,20 @@ export class PostService {
   }
 
   getPost(index: string) {
-    console.log('Fetching individual BlogPost from database.')
-    if (index == null)
+    console.log('Fetching individual BlogPost from database.');
+    console.log('index' + index);
+    if (index == null) {
+      console.log('null');
       return null;
+    }
     return this.http.get(this.serverUrl + index, {headers: this.headers})
       .toPromise()
-
       .then(response => {
-        return response.json().blogPost[0];
+        return response.json() as Post;
       })
       .catch(error => {
 
-        return error;
+        return this.handleError(error);
       });
   }
 
@@ -71,5 +73,10 @@ export class PostService {
       .then(response => {
         this.postChanged.next(this.posts.slice());
       });
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.log('handleError');
+    return Promise.reject(error.message || error);
   }
 }
