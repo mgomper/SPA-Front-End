@@ -5,6 +5,8 @@ export class Post {
   private id: string;
   private _content: string;
   private _comments: Comment[];
+  private _title: string;
+  private _user: string;
   // private _user: User;
 
   constructor(values: Object = {}) {
@@ -22,10 +24,25 @@ export class Post {
     return this._content;
   }
 
+  public set title(n: string) {
+    this._title = n;
+  }
+
+  public get title(): string {
+    return this._title;
+  }
+
   public set content(n: string) {
     this._content = n;
   }
 
+  public get user(): string {
+    return this._user;
+  }
+
+  public set user(n: string) {
+    this._user = n;
+  }
 
   public get comments(): Comment[] {
     return this._comments;

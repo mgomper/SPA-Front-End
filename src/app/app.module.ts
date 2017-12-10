@@ -24,6 +24,11 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostStartComponent } from './posts/post-start/post-start.component';
 import { PostItemComponent } from './posts/post-list/post-item/post-item.component';
 import {PostService} from './posts/post.service';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentEditComponent } from './comments/comment-edit/comment-edit.component';
+import {UserService} from './users/user.service';
+import { UsersComponent } from './users/users.component';
+import { UserThisComponent } from './users/user-this/user-this.component';
 
 
 @NgModule({
@@ -44,7 +49,11 @@ import {PostService} from './posts/post.service';
     PostEditComponent,
     PostListComponent,
     PostStartComponent,
-    PostItemComponent
+    PostItemComponent,
+    CommentsComponent,
+    CommentEditComponent,
+    UsersComponent,
+    UserThisComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,7 @@ import {PostService} from './posts/post.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipeService, PostService],
+  providers: [ShoppingListService, RecipeService, PostService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

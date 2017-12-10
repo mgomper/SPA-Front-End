@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Post } from '../post.model';
@@ -13,6 +13,8 @@ import {Comment} from '../../shared/comment.model';
 export class PostDetailComponent implements OnInit {
   post: Post = new Post();
   id: string;
+  @Output() commentSelected = new EventEmitter<void>();
+
 
   constructor(private postService: PostService,
               private route: ActivatedRoute,
@@ -25,8 +27,8 @@ export class PostDetailComponent implements OnInit {
         (params: Params) => {
           this.id = params['id'];
           this.postService.getPost(this.id).then(res => {
-            console.log('res incoming: ' + res);
-            console.log('res content: ' + res.content);
+            console.dir(res);
+            console.dir(res._id);
             this.post = res;
           });
         }
@@ -48,4 +50,14 @@ export class PostDetailComponent implements OnInit {
     this.router.navigate(['/blogPosts']);
   }
 
+  onNewComment() {
+    // this.router.navigate(['blogPosts/' + this.id + '/comment']);
+    this.router.navigate(['comment'], {relativeTo: this.route});
+  }
+
+  onDeleteComment(comment) {
+    this.postService.deleteComment(this.id, comment._id);
+    this.router.navigate(['/blogPosts']);
+
+  }
 }

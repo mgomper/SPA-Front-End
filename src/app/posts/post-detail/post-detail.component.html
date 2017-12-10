@@ -1,41 +1,57 @@
 <div class="row">
   <div class="col-xs-12">
-    <p>Content:</p>
-    <h1>{{ post.content }}</h1>
-    <p>test</p>
+    <button class="btn btn-success" (click)="onNewComment()">Place comment</button>
   </div>
 </div>
-<!--<div class="row">-->
-  <!--<div class="col-xs-12">-->
-    <!--<div-->
-      <!--class="btn-group"-->
-      <!--appDropdown>-->
-      <!--<button-->
-        <!--type="button"-->
-        <!--class="btn btn-primary dropdown-toggle">-->
-        <!--Manage Recipe <span class="caret"></span>-->
-      <!--</button>-->
-      <!--<ul class="dropdown-menu">-->
-        <!--<li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>-->
-        <!--<li><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>-->
-        <!--<li><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div
+      class="btn-group"
+      appDropdown>
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        Post settings <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="onEditPost()">Edit Post</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeletePost()">Delete Post</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <!--<div class="row">-->
   <!--<div class="col-xs-12">-->
     <!--{{ recipe.description }}-->
   <!--</div>-->
 <!--</div>-->
-<!--<div class="row">-->
-  <!--<div class="col-xs-12">-->
-    <!--<ul class="list-group">-->
-      <!--<li-->
-        <!--class="list-group-item"-->
-        <!--*ngFor="let ingredient of recipe.ingredients">-->
-        <!--{{ ingredient.name }} - {{ ingredient.amount }}-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</div>-->
-<!--</div>-->
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let comment of post.comments">
+        {{ comment.user }} - {{ comment.content }}
+        <div class="pull-right">
+          <button class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+          </button>
+          <button class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+          </button>
+        <button type="button" class="btn btn-default btn-sm" (click)="onDeleteComment(comment)">
+          <span class="glyphicon glyphicon-remove"></span> Spam
+        </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
