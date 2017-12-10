@@ -10,7 +10,7 @@ import {UserService} from '../user.service';
   styleUrls: ['./user-this.component.css']
 })
 export class UserThisComponent implements OnInit {
-  user: User;
+  user: User = new User();
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {

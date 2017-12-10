@@ -41,7 +41,7 @@ export class Comment {
     return this._user;
   }
 
-  public set comments(i: User) {
+  public set user(i: User) {
     this._user = i;
   }
 

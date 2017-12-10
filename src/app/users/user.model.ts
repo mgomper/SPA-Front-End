@@ -8,6 +8,7 @@ export class User {
   private _username: string;
   private _comments: Comment[];
   private _posts: Post[];
+  private _userScore: number;
   // private _user: User;
 
   constructor(values: Object = {}) {
@@ -54,4 +55,11 @@ export class User {
     this._posts = i;
   }
 
+  public get user_score(): number {
+    return this._userScore;
+  }
+
+  public set user_score(i: number) {
+    this._userScore = i;
+  }
 }
