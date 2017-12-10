@@ -13,8 +13,10 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 
 import { CommentEditComponent } from './comments/comment-edit/comment-edit.component';
+
 import {UsersComponent} from './users/users.component';
 import {UserThisComponent} from './users/user-this/user-this.component';
+import {UserRankingComponent} from './users/user-ranking/user-ranking.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/blogPosts', pathMatch: 'full' },
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     { path: ':id/edit', component: RecipeEditComponent },
   ] },
   { path: 'users', component: UsersComponent, children: [
-      { path: 'this', component: UserThisComponent}
+      { path: 'this', component: UserThisComponent},
+      { path: 'ranking', component: UserRankingComponent}
     ] },
   { path: 'shopping-list', component: ShoppingListComponent },
 ];

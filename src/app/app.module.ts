@@ -29,6 +29,7 @@ import { CommentEditComponent } from './comments/comment-edit/comment-edit.compo
 import {UserService} from './users/user.service';
 import { UsersComponent } from './users/users.component';
 import { UserThisComponent } from './users/user-this/user-this.component';
+import { UserRankingComponent } from './users/user-ranking/user-ranking.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { UserThisComponent } from './users/user-this/user-this.component';
     CommentsComponent,
     CommentEditComponent,
     UsersComponent,
-    UserThisComponent
+    UserThisComponent,
+    UserRankingComponent
   ],
   imports: [
     BrowserModule,
