@@ -38,6 +38,7 @@ export class PostEditComponent implements OnInit {
           this.initForm();
         }
       );
+
     console.log('test');
     console.log(this.userService.getUser());
     console.log(this.userService.getUser());
@@ -114,17 +115,24 @@ export class PostEditComponent implements OnInit {
         });
     }
 
-    this.userService.getUser().then(res => {
+    this.userService.getUser()
+      .then(res => {
       edituser = res;
-    })
+        console.log('before then');
+        console.dir(edituser);
+        console.dir(edituser._id);
+
+      })
       .then()
     this.postForm = new FormGroup({
       'content': new FormControl('', Validators.required),
       'title': new FormControl('', Validators.required),
-      'user': new FormControl(edituser._id || 'Not logged in', Validators.required)
+      'user': new FormControl(edituser._id || 'not logged in', Validators.required)
       // 'comments': new FormControl('', Validators.required),
       // 'user': new FormControl('', Validators.required)
     });
+    console.log('after then');
+    console.dir(edituser);
   }
 
 }

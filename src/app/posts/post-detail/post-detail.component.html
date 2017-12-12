@@ -9,6 +9,7 @@
     <p>{{ post.user }}</p>
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
+
   </div>
 </div>
 <div class="row">
@@ -40,12 +41,12 @@
       <li
         class="list-group-item"
         *ngFor="let comment of post.comments">
-        {{ comment.user }} - {{ comment.content }}
+        {{comment.rating}} - {{ comment.content }}
         <div class="pull-right">
-          <button class="btn btn-primary btn-xs">
+          <button class="btn btn-primary btn-xs" (click)="onDecreaseComment(comment)">
             <span class="glyphicon glyphicon-triangle-bottom"></span>
           </button>
-          <button class="btn btn-primary btn-xs">
+          <button class="btn btn-primary btn-xs" (click)="onIncreaseComment(comment)">
             <span class="glyphicon glyphicon-triangle-top"></span>
           </button>
         <button type="button" class="btn btn-default btn-sm" (click)="onDeleteComment(comment)">

@@ -8,11 +8,12 @@ import {Comment} from '../shared/comment.model';
 @Injectable()
 export class PostService {
   postChanged = new Subject<Post[]>();
-  commentChanged = new Subject<Comment[]>();
+  spostChanged = new Subject<Post>();
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private serverUrl = environment.serverUrl + '/blogPosts/'; // URL to web api
   private posts: Post[];
+  private post: Post;
   private comments: Comment[];
 
 
@@ -22,6 +23,19 @@ export class PostService {
   getPosts() {
     console.log('Fetching BlogPosts from database.')
     return this.http.get(this.serverUrl, {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.posts = response.json() as Post[];
+        return response.json() as Post[];
+      })
+      .catch(error => {
+        return error;
+      });
+  }
+
+  getPostsSortedByRating() {
+    console.log('Fetching BlogPosts from database.')
+    return this.http.get(this.serverUrl + 'filter/rating', {headers: this.headers})
       .toPromise()
       .then(response => {
         this.posts = response.json() as Post[];
@@ -70,6 +84,10 @@ export class PostService {
       .toPromise()
       .then(response => {
         this.postChanged.next(this.posts.slice());
+      })
+      .catch(error => {
+        console.log(error);
+        alert('Please make sure your form input is correct.' + error);
       });
   }
 
@@ -78,6 +96,38 @@ export class PostService {
       .toPromise()
       .then(response => {
         this.postChanged.next(this.posts.slice());
+      });
+  }
+
+  increasePost(index: string) {
+    return this.http.put(this.serverUrl + index + '/incr', {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.postChanged.next(this.posts.slice());
+      });
+  }
+
+  decreasePost(index: string) {
+    return this.http.put(this.serverUrl + index + '/decr', {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.postChanged.next(this.posts.slice());
+      });
+  }
+
+  increaseComment(index: string, indexm: string) {
+    return this.http.put(this.serverUrl + index + '/commentinc/' + indexm, {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.spostChanged.next(this.post);
+      });
+  }
+
+  decreaseComment(index: string, indexm: string) {
+    return this.http.put(this.serverUrl + index + '/commentdec/' + indexm, {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.spostChanged.next(this.post);
       });
   }
 
@@ -93,7 +143,7 @@ export class PostService {
     return this.http.delete(this.serverUrl + index + '/comment/' + indexm, {headers: this.headers})
       .toPromise()
       .then(response => {
-        this.postChanged.next(this.posts.slice());
+        this.spostChanged.next(this.post);
       });
   }
 

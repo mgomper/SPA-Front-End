@@ -30,6 +30,8 @@ import {UserService} from './users/user.service';
 import { UsersComponent } from './users/users.component';
 import { UserThisComponent } from './users/user-this/user-this.component';
 import { UserRankingComponent } from './users/user-ranking/user-ranking.component';
+import { PostRankingComponent } from './posts/post-ranking/post-ranking.component';
+import { PostRankingItemComponent } from './posts/post-ranking/post-ranking-item/post-ranking-item.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { UserRankingComponent } from './users/user-ranking/user-ranking.componen
     CommentEditComponent,
     UsersComponent,
     UserThisComponent,
-    UserRankingComponent
+    UserRankingComponent,
+    PostRankingComponent,
+    PostRankingItemComponent
   ],
   imports: [
     BrowserModule,

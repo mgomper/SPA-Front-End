@@ -4,7 +4,16 @@
   routerLinkActive="active"
   (click)="onSelected()"
   class="list-group-item clearfix">
-  <div class="pull-left">
+  <div >
     <h4 class="list-group-item-heading">{{ post.title }}</h4>
+    <h6 class="list-group-item-heading">{{ post.rating }}</h6>
+    <div class="pull-right">
+      <button class="btn btn-primary btn-xs" (click)="onIncreasePost(comment)">
+        <span class="glyphicon glyphicon-triangle-top"></span>
+      </button>
+      <button class="btn btn-primary btn-xs" (click)="onDecreasePost(comment)">
+        <span class="glyphicon glyphicon-triangle-bottom"></span>
+      </button>
+    </div>
   </div>
 </a>

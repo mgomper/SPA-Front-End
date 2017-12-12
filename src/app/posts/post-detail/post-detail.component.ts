@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import {Comment} from '../../shared/comment.model';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-post-detail',
@@ -14,6 +15,8 @@ export class PostDetailComponent implements OnInit {
   post: Post = new Post();
   id: string;
   @Output() commentSelected = new EventEmitter<void>();
+  subscription: Subscription;
+
 
 
   constructor(private postService: PostService,
@@ -27,10 +30,20 @@ export class PostDetailComponent implements OnInit {
         (params: Params) => {
           this.id = params['id'];
           this.postService.getPost(this.id).then(res => {
+            console.log('Kijk eens aan, je hebt de subscribe van post-detail aangeroepen.');
             console.dir(res);
-            console.dir(res._id);
             this.post = res;
           });
+        }
+      );
+    this.subscription = this.postService.spostChanged
+      .subscribe(
+        (posts: Post) => {
+          console.log('tweede subscribe aangeroepen');
+          this.postService.getPost(this.id)
+            .then(res => {
+              this.post = res;
+            });
         }
       );
   }
@@ -51,13 +64,19 @@ export class PostDetailComponent implements OnInit {
   }
 
   onNewComment() {
-    // this.router.navigate(['blogPosts/' + this.id + '/comment']);
     this.router.navigate(['comment'], {relativeTo: this.route});
   }
 
   onDeleteComment(comment) {
     this.postService.deleteComment(this.id, comment._id);
-    this.router.navigate(['/blogPosts']);
+
+  }
+
+  onIncreaseComment(comment) {
+    this.postService.increaseComment(this.id, comment._id);
+  }
+  onDecreaseComment(comment) {
+    this.postService.decreaseComment(this.id, comment._id);
 
   }
 }

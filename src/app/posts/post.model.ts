@@ -7,6 +7,7 @@ export class Post {
   private _comments: Comment[];
   private _title: string;
   private _user: string;
+  private _rating: number;
   // private _user: User;
 
   constructor(values: Object = {}) {
@@ -51,5 +52,14 @@ export class Post {
   public set comments(i: Comment[]) {
     this._comments = i;
   }
+
+  public get rating(): number {
+    return this._rating;
+  }
+
+  public set rating(i: number) {
+    this._rating = i;
+  }
+
 
 }

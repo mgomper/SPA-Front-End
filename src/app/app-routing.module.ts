@@ -11,6 +11,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostStartComponent } from './posts/post-start/post-start.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import { PostRankingComponent} from './posts/post-ranking/post-ranking.component';
+
 
 import { CommentEditComponent } from './comments/comment-edit/comment-edit.component';
 
@@ -23,10 +25,11 @@ const appRoutes: Routes = [
   { path: 'blogPosts', component: PostsComponent, children: [
       { path: '', component: PostStartComponent },
       { path: 'new', component: PostEditComponent },
+      { path: 'ranking', component: PostRankingComponent},
       { path: ':id', component: PostDetailComponent },
       { path: ':id/edit', component: PostEditComponent },
       { path: ':id/comment', component: CommentEditComponent }
-    ] },
+      ] },
   { path: 'recipes', component: RecipesComponent, children: [
     { path: '', component: RecipeStartComponent },
     { path: 'new', component: RecipeEditComponent },

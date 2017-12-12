@@ -1,0 +1,10 @@
+<h3>Check out these high ranking posts!</h3>
+<div class="row">
+  <div class="col-xs-12">
+    <app-post-ranking-item
+      *ngFor="let postEl of posts; let i = index"
+      [post]="postEl"
+      [index]="i"></app-post-ranking-item>
+  </div>
+</div>
+
