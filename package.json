@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng":"ng",
-    "start": "http-server dist/",
+    "start": "ng serve",
     "build": "ng build --prod --env=prod",
+    "build:prod": "ng build --prod --env=prod && node server.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
-    "e2e": "protractor",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build --prod --env=prod && node server.js"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --prod --env=prod"
   },
   "private": true,
   "dependencies": {
