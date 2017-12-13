@@ -5,6 +5,8 @@ import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import {Comment} from '../../shared/comment.model';
 import {Subscription} from 'rxjs/Subscription';
+import {User} from '../../users/user.model';
+import {UserService} from '../../users/user.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,6 +15,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class PostDetailComponent implements OnInit {
   post: Post = new Post();
+  user: User = new User();
   id: string;
   @Output() commentSelected = new EventEmitter<void>();
   subscription: Subscription;
@@ -20,6 +23,7 @@ export class PostDetailComponent implements OnInit {
 
 
   constructor(private postService: PostService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -33,6 +37,9 @@ export class PostDetailComponent implements OnInit {
             console.log('Kijk eens aan, je hebt de subscribe van post-detail aangeroepen.');
             console.dir(res);
             this.post = res;
+          });
+          this.userService.getUser().then(res => {
+            this.user = res;
           });
         }
       );
@@ -69,7 +76,10 @@ export class PostDetailComponent implements OnInit {
 
   onDeleteComment(comment) {
     this.postService.deleteComment(this.id, comment._id);
+  }
 
+  toFrontPage() {
+    this.postService.addToFrontPage(this.id);
   }
 
   onIncreaseComment(comment) {

@@ -5,18 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/recipe.service';
 import { PostsComponent } from './posts/posts.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
@@ -32,21 +22,16 @@ import { UserThisComponent } from './users/user-this/user-this.component';
 import { UserRankingComponent } from './users/user-ranking/user-ranking.component';
 import { PostRankingComponent } from './posts/post-ranking/post-ranking.component';
 import { PostRankingItemComponent } from './posts/post-ranking/post-ranking-item/post-ranking-item.component';
+import { PostFrontpageComponent } from './posts/post-frontpage/post-frontpage.component';
+import { PostFrontpageItemComponent } from './posts/post-frontpage/post-frontpage-item/post-frontpage-item.component';
+import { WipComponent } from './wip/wip.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
     PostsComponent,
     PostDetailComponent,
     PostEditComponent,
@@ -59,7 +44,10 @@ import { PostRankingItemComponent } from './posts/post-ranking/post-ranking-item
     UserThisComponent,
     UserRankingComponent,
     PostRankingComponent,
-    PostRankingItemComponent
+    PostRankingItemComponent,
+    PostFrontpageComponent,
+    PostFrontpageItemComponent,
+    WipComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +56,7 @@ import { PostRankingItemComponent } from './posts/post-ranking/post-ranking-item
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipeService, PostService, UserService],
+  providers: [PostService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,12 +29,12 @@ export class UserService {
 //   // }
 //
   getUser() {
-    return this.http.get(this.serverUrl + '5a2d9ac25e907e72787db974', {headers: this.headers})
+    return this.http.get(this.serverUrl, {headers: this.headers})
       .toPromise()
       .then(response => {
         console.log('service');
         console.dir(response);
-        return response.json() as User;
+        return response.json()[0] as User;
       })
       .catch(error => {
         return this.handleError(error);

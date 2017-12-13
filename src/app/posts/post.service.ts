@@ -147,6 +147,14 @@ export class PostService {
       });
   }
 
+  addToFrontPage(index: string) {
+    return this.http.post(this.serverUrl + 'frontpage/' + index, {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.spostChanged.next(this.post);
+      });
+  }
+
   private handleError(error: any): Promise<any> {
     console.log('handleError');
     return Promise.reject(error.message || error);

@@ -6,10 +6,10 @@
 <hr>
 <div class="row">
   <div class="col-xs-12">
-    <p>{{ post.user }}</p>
     <h1>{{ post.title }}</h1>
+    <i>A post by {{ user.username }}!</i>
+    <hr>
     <p>{{ post.content }}</p>
-
   </div>
 </div>
 <div class="row">
@@ -22,11 +22,22 @@
         class="btn btn-primary dropdown-toggle">
         Post settings <span class="caret"></span>
       </button>
+
       <ul class="dropdown-menu">
         <li><a style="cursor: pointer;" (click)="onEditPost()">Edit Post</a></li>
         <li><a style="cursor: pointer;" (click)="onDeletePost()">Delete Post</a></li>
       </ul>
     </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-12">
+      <button
+        type="button"
+        class="btn btn-warning dropdown-toggle"  (click)="toFrontPage()">
+        To front page
+      </button>
   </div>
 </div>
 <!--<div class="row">-->

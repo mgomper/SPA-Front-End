@@ -1,0 +1,15 @@
+.navbar-default {
+   background-color: #3095CC;
+   border-color: #3095CC;
+ }
+
+.navbar-default a{
+color: black;
+}
+
+.navbar-default .active{
+  background-color: black;
+}
+
+nav{   background-color: #3095CC;
+  border-color: #3095CC;}

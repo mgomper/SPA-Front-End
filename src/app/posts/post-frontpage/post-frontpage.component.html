@@ -1,0 +1,12 @@
+<h2>Front page</h2>
+<h3>These posts made it to the top</h3>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-post-frontpage-item
+      *ngFor="let postEl of posts; let i = index"
+      [post]="postEl"
+      [index]="i"></app-post-frontpage-item>
+  </div>
+</div>
+
