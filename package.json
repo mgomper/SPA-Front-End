@@ -3,19 +3,20 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "_heroku": "https://www.angularonrails.com/deploy-rails-application-angular-cli-webpack-front-end/",
+    "ng":"ng",
     "start": "http-server dist/",
+    "build": "ng build --prod --env=prod",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
-    "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "preinstall": "npm install -g http-server",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod --env=prod && node server.js"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
+    "@angular/cli": "1.5.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
