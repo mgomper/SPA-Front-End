@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng":"ng",
+    "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --env=prod",
     "build:prod": "ng build --prod --env=prod && node server.js",
@@ -33,7 +33,6 @@
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14",
     "neo4j": "^2.0.0-RC2"
-
   },
   "devDependencies": {
     "@angular/language-service": "^5.0.0",
