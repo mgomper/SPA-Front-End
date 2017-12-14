@@ -7,8 +7,8 @@ import {Post} from '../../post.model';
   styleUrls: ['./post-frontpage-item.component.css']
 })
 export class PostFrontpageItemComponent implements OnInit {
-  @Input() private post: Post;
-  @Input() private index: string;
+  @Input() post: Post;
+  @Input() index: string;
 
   ngOnInit() {
     this.index = this.post._id;
