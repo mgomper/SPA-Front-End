@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
   styleUrls: ['./post-ranking.component.css']
 })
 export class PostRankingComponent implements OnInit, OnDestroy {
-  private posts: Post[];
+  posts: Post[];
   private subscription: Subscription;
 
   constructor(private postService: PostService,

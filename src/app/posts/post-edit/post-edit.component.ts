@@ -18,7 +18,7 @@ export class PostEditComponent implements OnInit {
   private userId: string;
   private editMode = false;
   private postForm: FormGroup;
-  private user: User;
+  user: User;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,

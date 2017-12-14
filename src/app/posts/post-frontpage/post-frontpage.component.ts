@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
   styleUrls: ['./post-frontpage.component.css']
 })
 export class PostFrontpageComponent implements OnInit, OnDestroy {
-  private posts: Post[];
+  posts: Post[];
   private subscription: Subscription;
 
   constructor(private postService: PostService,

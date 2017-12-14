@@ -21,10 +21,10 @@ interface INote {
 })
 
 export class PostDetailComponent implements OnInit, INote {
-  private post: Post = new Post();
+  post: Post = new Post();
   noteMessage = 'Enter your note here.';
   note = 'Note here';
-  private user: User = new User();
+  user: User = new User();
   private id: string;
   @Output() private commentSelected = new EventEmitter<void>();
   private subscription: Subscription;
