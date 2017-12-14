@@ -12,8 +12,8 @@ import {UserService} from '../../users/user.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  posts: Post[];
-  subscription: Subscription;
+  private posts: Post[];
+  private subscription: Subscription;
 
   constructor(private postService: PostService,
               private router: Router,

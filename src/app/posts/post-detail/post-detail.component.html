@@ -68,3 +68,10 @@
     </ul>
   </div>
 </div>
+
+<hr>
+
+<p>{{noteMessage}}</p>
+<input [value]="note" (input)="note = $event.target.value">
+<br>
+<i noteDirective>{{note}}</i>

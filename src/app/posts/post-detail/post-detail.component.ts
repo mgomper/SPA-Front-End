@@ -7,18 +7,27 @@ import {Comment} from '../../shared/comment.model';
 import {Subscription} from 'rxjs/Subscription';
 import {User} from '../../users/user.model';
 import {UserService} from '../../users/user.service';
+import {StringifyOptions} from 'querystring';
+
+interface INote {
+  note: String;
+  noteMessage: string;
+}
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
-export class PostDetailComponent implements OnInit {
-  post: Post = new Post();
-  user: User = new User();
-  id: string;
-  @Output() commentSelected = new EventEmitter<void>();
-  subscription: Subscription;
+
+export class PostDetailComponent implements OnInit, INote {
+  private post: Post = new Post();
+  noteMessage = 'Enter your note here.';
+  note = 'Note here';
+  private user: User = new User();
+  private id: string;
+  @Output() private commentSelected = new EventEmitter<void>();
+  private subscription: Subscription;
 
 
 
@@ -79,7 +88,7 @@ export class PostDetailComponent implements OnInit {
   }
 
   toFrontPage() {
-    this.postService.addToFrontPage(this.id);
+    this.postService.addToFrontPage(this.id, this.user._id);
   }
 
   onIncreaseComment(comment) {

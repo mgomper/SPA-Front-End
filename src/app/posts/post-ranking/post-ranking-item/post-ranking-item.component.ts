@@ -7,8 +7,8 @@ import {Post} from '../../post.model';
   styleUrls: ['./post-ranking-item.component.css']
 })
 export class PostRankingItemComponent implements OnInit {
-  @Input() post: Post;
-  @Input() index: string;
+  @Input() private post: Post;
+  @Input() private index: string;
 
   ngOnInit() {
     this.index = this.post._id;

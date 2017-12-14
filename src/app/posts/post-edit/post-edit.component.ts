@@ -14,11 +14,11 @@ import {User} from '../../users/user.model';
   styleUrls: ['./post-edit.component.css']
 })
 export class PostEditComponent implements OnInit {
-  id: string;
-  userId: string;
-  editMode = false;
-  postForm: FormGroup;
-  user: User;
+  private id: string;
+  private userId: string;
+  private editMode = false;
+  private postForm: FormGroup;
+  private user: User;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,

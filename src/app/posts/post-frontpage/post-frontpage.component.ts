@@ -11,8 +11,8 @@ import { PostService } from '../post.service';
   styleUrls: ['./post-frontpage.component.css']
 })
 export class PostFrontpageComponent implements OnInit, OnDestroy {
-  posts: Post[];
-  subscription: Subscription;
+  private posts: Post[];
+  private subscription: Subscription;
 
   constructor(private postService: PostService,
               private router: Router,
@@ -23,13 +23,13 @@ export class PostFrontpageComponent implements OnInit, OnDestroy {
     this.subscription = this.postService.postChanged
       .subscribe(
         (posts: Post[]) => {
-          this.postService.getPosts()
+          this.postService.getPostsFromFrontPage()
             .then(res => {
               this.posts = res;
             });
         }
       );
-    this.postService.getPostsSortedByRating().then(res => {
+    this.postService.getPostsFromFrontPage().then(res => {
       this.posts = res;
     });
   }

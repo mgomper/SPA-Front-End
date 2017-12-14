@@ -20,6 +20,19 @@ export class PostService {
   constructor(private http: Http) {
   }
 
+  getPostsFromFrontPage() {
+    console.log('Fetching BlogPosts from database.')
+    return this.http.get(this.serverUrl + 'frontpage', {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        this.posts = response.json() as Post[];
+        return response.json() as Post[];
+      })
+      .catch(error => {
+        return error;
+      });
+  }
+
   getPosts() {
     console.log('Fetching BlogPosts from database.')
     return this.http.get(this.serverUrl, {headers: this.headers})
@@ -147,8 +160,8 @@ export class PostService {
       });
   }
 
-  addToFrontPage(index: string) {
-    return this.http.post(this.serverUrl + 'frontpage/' + index, {headers: this.headers})
+  addToFrontPage(index: string, indexm: string) {
+    return this.http.post(this.serverUrl + 'frontpage/' + index + '/' + indexm, {headers: this.headers})
       .toPromise()
       .then(response => {
         this.spostChanged.next(this.post);

@@ -25,6 +25,7 @@ import { PostRankingItemComponent } from './posts/post-ranking/post-ranking-item
 import { PostFrontpageComponent } from './posts/post-frontpage/post-frontpage.component';
 import { PostFrontpageItemComponent } from './posts/post-frontpage/post-frontpage-item/post-frontpage-item.component';
 import { WipComponent } from './wip/wip.component';
+import {NoteDirective} from './shared/note.directive';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { WipComponent } from './wip/wip.component';
     PostRankingItemComponent,
     PostFrontpageComponent,
     PostFrontpageItemComponent,
-    WipComponent
+    WipComponent,
+    NoteDirective
   ],
   imports: [
     BrowserModule,
