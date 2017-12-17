@@ -9,7 +9,7 @@ export class UserService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private serverUrl = environment.serverUrl + '/users/'; // URL to web api
-
+  test: String;
 
   constructor(private http: Http) {
 
