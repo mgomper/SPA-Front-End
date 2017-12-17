@@ -45,21 +45,18 @@ export class PostDetailComponent implements OnInit, INote {
         (params: Params) => {
           this.id = params['id'];
           this.postService.getPost(this.id).then(res => {
-            console.log('Kijk eens aan, je hebt de subscribe van post-detail aangeroepen.');
             console.log('log de user' + res.user);
             this.post = res;
             this.postUserId = res.user;
           })
             .then(() => {
               this.userService.getSomeUser(this.postUserId).then(res => {
-                console.log('Kijk eens aan, je hebt de subscribe van getSomeUser aangeroepen');
                 console.dir(res);
                 this.postUser = res;
               });
             })
             .then(() => {
               this.userService.getUser().then(res => {
-                console.log('Kijk eens aan, je hebt de subscribe van getUser aangeroepen');
                 console.dir(res);
                 this.user = res;
               });
@@ -69,20 +66,23 @@ export class PostDetailComponent implements OnInit, INote {
     this.subscription = this.postService.spostChanged
       .subscribe(
         (posts: Post) => {
-          console.log('tweede subscribe aangeroepen');
-          this.postService.getPost(this.id)
-            .then(res => {
-              this.post = res;
-              this.postUserId = res.user;
+          this.postService.getPost(this.id).then(res => {
+            console.log('log de user' + res.user);
+            this.post = res;
+            this.postUserId = res.user;
+          })
+            .then(() => {
+              this.userService.getSomeUser(this.postUserId).then(res => {
+                console.dir(res);
+                this.postUser = res;
+              });
+            })
+            .then(() => {
+              this.userService.getUser().then(res => {
+                console.dir(res);
+                this.user = res;
+              });
             });
-          this.userService.getSomeUser(this.postUserId).then(res => {
-            console.log('KIJKK HIER IS JE USER');
-            console.dir(res);
-            this.postUser = res;
-          });
-          this.userService.getUser().then(res => {
-            this.user = res;
-          });
         }
       );
   }

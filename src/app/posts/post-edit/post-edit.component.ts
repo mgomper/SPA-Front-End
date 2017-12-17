@@ -39,7 +39,6 @@ export class PostEditComponent implements OnInit {
     this.userService.getUser().then(res => {
       this.user = res;
       this.userId = res._id;
-      console.log('user ID incoming');
       console.dir(this.userId);
     });
 
@@ -80,7 +79,7 @@ export class PostEditComponent implements OnInit {
           .then(post => {
             editpost = post;
             this.postForm = new FormGroup({
-              'content': new FormControl(editpost.content || '', Validators.required),
+              'content': new FormControl(editpost.content, Validators.required),
               'title': new FormControl(editpost.title, Validators.required),
               'user': new FormControl(edituser.username, Validators.required)
             });
