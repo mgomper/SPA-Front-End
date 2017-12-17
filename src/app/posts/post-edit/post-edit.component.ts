@@ -27,37 +27,33 @@ export class PostEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.user = this.userService.getUser();
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
-          // this.userId = '5a2be3df8dfea75d94b31343';
           console.log('userId: ' + this.userId);
           this.editMode = params['id'] != null;
           this.initForm();
         }
       );
+    this.userService.getUser().then(res => {
+      this.user = res;
+      this.userId = res._id;
+      console.log('user ID incoming');
+      console.dir(this.userId);
+    });
 
     console.log('test');
     console.log(this.userService.getUser());
     console.log(this.userService.getUser());
-
-    // this.userService.getUser().then(res => {
-    //   console.log('user data incoming');
-    //   console.dir(res);
-    //   console.dir(res._id);
-    //   this.user = res;
-    //   this.userId = res._id;
-    //   console.log('user ID incoming');
-    //   console.dir(this.userId);
-    // });
   }
 
   onSubmit() {
     if (this.editMode) {
+      this.postForm.patchValue({user: this.userId});
       this.postService.updatePost(this.id, this.postForm.value);
     } else {
+      this.postForm.patchValue({user: this.userId});
       this.postService.addPost(this.postForm.value);
       this.postService.getPosts()
         .then(recipes => {
@@ -66,22 +62,6 @@ export class PostEditComponent implements OnInit {
     }
     this.onCancel();
   }
-  //
-  // onAddIngredient() {
-  //   (<FormArray>this.recipeForm.get('ingredients')).push(
-  //     new FormGroup({
-  //       'name': new FormControl(null, Validators.required),
-  //       'amount': new FormControl(null, [
-  //         Validators.required,
-  //         Validators.pattern(/^[1-9]+[0-9]*$/)
-  //       ])
-  //     })
-  //   );
-  // }
-
-  // onDeleteIngredient(index: number) {
-  //   (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
-  // }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
@@ -100,15 +80,12 @@ export class PostEditComponent implements OnInit {
           .then(post => {
             editpost = post;
             this.postForm = new FormGroup({
-              'content': new FormControl(editpost.content, Validators.required),
+              'content': new FormControl(editpost.content || '', Validators.required),
               'title': new FormControl(editpost.title, Validators.required),
-              'user': new FormControl(edituser._id, Validators.required)
-              // 'imagePath': new FormControl(editrecipe.imagePath, Validators.required),
-              // 'description': new FormControl(editrecipe.description, Validators.required),
-              // 'ingredients': recipeIngredients
+              'user': new FormControl(edituser.username, Validators.required)
             });
           });
-      })
+        })
         .catch(error => {
           console.log(error);
           alert('Please make sure your form input is correct.');
@@ -121,15 +98,13 @@ export class PostEditComponent implements OnInit {
         console.log('before then');
         console.dir(edituser);
         console.dir(edituser._id);
-
       })
       .then()
     this.postForm = new FormGroup({
-      'content': new FormControl('', Validators.required),
-      'title': new FormControl('', Validators.required),
-      'user': new FormControl(edituser._id || 'not logged in', Validators.required)
-      // 'comments': new FormControl('', Validators.required),
-      // 'user': new FormControl('', Validators.required)
+      'content': new FormControl('Your content here', Validators.required),
+      'title': new FormControl('Your title here', Validators.required),
+      'user': new FormControl(edituser.username || 'not logged in', Validators.required)
+
     });
     console.log('after then');
     console.dir(edituser);

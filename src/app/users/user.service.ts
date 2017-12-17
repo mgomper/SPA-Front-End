@@ -9,7 +9,7 @@ export class UserService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private serverUrl = environment.serverUrl + '/users/'; // URL to web api
-  test: String;
+  id: String;
 
   constructor(private http: Http) {
 
@@ -29,12 +29,25 @@ export class UserService {
 //   // }
 //
   getUser() {
-    return this.http.get(this.serverUrl, {headers: this.headers})
+    return this.http.get(this.serverUrl + (this.id || '5a368450b61ae94874cf9de6'), {headers: this.headers})
       .toPromise()
       .then(response => {
         console.log('service');
         console.dir(response);
-        return response.json()[0] as User;
+        return response.json() as User;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  getSomeUser(id) {
+    return this.http.get(this.serverUrl + id, {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        console.log('service');
+        console.dir(response);
+        return response.json() as User;
       })
       .catch(error => {
         return this.handleError(error);

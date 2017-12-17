@@ -25,6 +25,8 @@ export class PostDetailComponent implements OnInit, INote {
   noteMessage = 'Enter your note here.';
   note = 'Note here';
   user: User = new User();
+  postUser: User = new User();
+  postUserId: String;
   private id: string;
   @Output() private commentSelected = new EventEmitter<void>();
   private subscription: Subscription;
@@ -44,12 +46,24 @@ export class PostDetailComponent implements OnInit, INote {
           this.id = params['id'];
           this.postService.getPost(this.id).then(res => {
             console.log('Kijk eens aan, je hebt de subscribe van post-detail aangeroepen.');
-            console.dir(res);
+            console.log('log de user' + res.user);
             this.post = res;
-          });
-          this.userService.getUser().then(res => {
-            this.user = res;
-          });
+            this.postUserId = res.user;
+          })
+            .then(() => {
+              this.userService.getSomeUser(this.postUserId).then(res => {
+                console.log('Kijk eens aan, je hebt de subscribe van getSomeUser aangeroepen');
+                console.dir(res);
+                this.postUser = res;
+              });
+            })
+            .then(() => {
+              this.userService.getUser().then(res => {
+                console.log('Kijk eens aan, je hebt de subscribe van getUser aangeroepen');
+                console.dir(res);
+                this.user = res;
+              });
+            });
         }
       );
     this.subscription = this.postService.spostChanged
@@ -59,7 +73,16 @@ export class PostDetailComponent implements OnInit, INote {
           this.postService.getPost(this.id)
             .then(res => {
               this.post = res;
+              this.postUserId = res.user;
             });
+          this.userService.getSomeUser(this.postUserId).then(res => {
+            console.log('KIJKK HIER IS JE USER');
+            console.dir(res);
+            this.postUser = res;
+          });
+          this.userService.getUser().then(res => {
+            this.user = res;
+          });
         }
       );
   }

@@ -27,7 +27,7 @@ export class UserThisComponent implements OnInit {
           });
         }
       );
-    console.log(this.userService.test);
+    console.log(this.userService.id);
   }
 
 

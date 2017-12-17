@@ -10,8 +10,8 @@ export class HeaderComponent {
 
   constructor(private userService: UserService) {
   }
-  varTest() {
-    this.userService.test = 'Hoera, het is gelukt';
+  varTest(id: String) {
+    this.userService.id = id;
     // ALS ARGUMENT USERID MEEGEVEN
   }
 }
