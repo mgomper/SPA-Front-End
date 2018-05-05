@@ -29,7 +29,7 @@ export class UserService {
 //   // }
 //
   getUser() {
-    return this.http.get(this.serverUrl + (this.id || '5a36dad8085fcf002191ca0d'), {headers: this.headers})
+    return this.http.get(this.serverUrl + ( '5a36dad8085fcf002191ca0d'), {headers: this.headers})
       .toPromise()
       .then(response => {
         console.log('service');

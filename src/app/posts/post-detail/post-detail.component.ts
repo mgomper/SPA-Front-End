@@ -63,6 +63,7 @@ export class PostDetailComponent implements OnInit, INote {
             });
         }
       );
+
     this.subscription = this.postService.spostChanged
       .subscribe(
         (posts: Post) => {
